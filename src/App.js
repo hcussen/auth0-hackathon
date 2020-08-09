@@ -19,7 +19,7 @@ const App = () => {
           <Header />
           <Switch>
             <Route path="/" exact component={HomePage} />
-            <PrivateRoute path="/dashboard" component={DashboardPage} />
+            <PrivateRoute path="/dashboard*" component={DashboardPage} />
           </Switch>
         </Router>
       </Auth0Provider>
