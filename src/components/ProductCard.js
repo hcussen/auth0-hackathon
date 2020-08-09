@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import Checkout from "./Checkout";
 
-const ProductCard = () => {
+const ProductCard = ({ productID }) => {
   const [currentProd, setCurrentProd] = useState("");
   const [currentPrice, setCurrentPrice] = useState("");
 
   useEffect(() => {
-    fetch("/prod")
+    fetch(`/prod/${productID}`)
       .then((res) => res.json())
       .then((data) => {
         setCurrentProd(data.prod);
@@ -18,7 +18,7 @@ const ProductCard = () => {
       .then((data) => {
         setCurrentPrice(data.price.data[0].id);
       });
-  }, []);
+  }, [productID]);
 
   return (
     <Card style={{ width: "18rem" }}>

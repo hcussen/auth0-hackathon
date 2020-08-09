@@ -17,9 +17,9 @@ const App = () => {
     fetch("/product_list")
       .then((res) => res.json())
       .then((data) => {
-        setProdList(data.data);
+        setProdList(data.list.data);
       });
-  });
+  }, [setProdList]);
 
   return (
     <div id="app">
@@ -27,12 +27,8 @@ const App = () => {
       <Container fluid className="app-container">
         <Elements stripe={stripePromise}>
           {prodList.map(() => {
-            return <ProductCard
-          
+            return <ProductCard></ProductCard>;
           })}
-          <ProductCard
-        ></ProductCard
-        >
         </Elements>
       </Container>
     </div>

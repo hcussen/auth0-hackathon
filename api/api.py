@@ -7,14 +7,17 @@ app = Flask(__name__)
 stripe.api_key = "sk_test_51HDkRmEZFQAi6Kd7pAkZZtS33tq2Q1NG1dyqfO8gW1haptjw3fbadqTFfHO413T1wLUd7dHsXTw2TXQh7BWjq1EP00IDLvE3uZ"
 
 
-@app.route('/prod')
-def get_prod():
-    return {'prod': stripe.Product.retrieve("prod_Hnc31zqvvzlZbo")}
+@app.route('/prod/<id>')
+def get_prod(id):
+    if id != "undefined":
+        return {'prod': stripe.Product.retrieve(id)}
+    return {'prod': ''}
 
 
 @app.route('/product_list')
 def all_products():
-    return {stripe.Product.list()}
+    print("hello")
+    return {'list': stripe.Product.list()}
 
 
 @app.route('/prodprice')
