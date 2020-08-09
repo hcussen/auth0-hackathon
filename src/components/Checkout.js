@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { useStripe } from "@stripe/react-stripe-js";
+import React from "react";
+import Button from "react-bootstrap/Button";
 
-const stripePromise = loadStripe(
-  "sk_test_51HDkRmEZFQAi6Kd7pAkZZtS33tq2Q1NG1dyqfO8gW1haptjw3fbadqTFfHO413T1wLUd7dHsXTw2TXQh7BWjq1EP00IDLvE3uZ"
-);
+// const stripePromise = loadStripe(
+//   "sk_test_51HDkRmEZFQAi6Kd7pAkZZtS33tq2Q1NG1dyqfO8gW1haptjw3fbadqTFfHO413T1wLUd7dHsXTw2TXQh7BWjq1EP00IDLvE3uZ"
+// );
 /*
 props.productID
 */
@@ -36,9 +35,9 @@ const Checkout = (props) => {
 
   return (
     <form onSubmit={redirect}>
-      <button type="submit" disabled={!stripe}>
+      <Button type="submit" disabled={!stripe}>
         {props.children}
-      </button>
+      </Button>
     </form>
   );
 };
