@@ -1,36 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Auth0Provider } from "@auth0/auth0-react";
+import SecretRoute from "./components/SecretRoute";
 import "./GlobalStyles.css";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import Container from "react-bootstrap/Container";
-
-import ProductCard from "./components/ProductCard";
 import Header from "./components/Header/Header";
-
-const stripePromise = loadStripe(
-  "pk_test_51HDkRmEZFQAi6Kd7g9lQ12DizGNAzTsotDXjuiFobbkEz6IKJvWyVRrUyaLHO1EnBOYrfYRbIYjKb4dhNrSFjToN00CB5cH4la"
-);
+import HomePage from "./pages/home";
+import DashboardPage from "./pages/DashboardPage";
 
 const App = () => {
-  const [prodList, setProdList] = useState([]);
-  useEffect(() => {
-    fetch("/product_list")
-      .then((res) => res.json())
-      .then((data) => {
-        setProdList(data.list.data);
-      });
-  }, [setProdList]);
-
   return (
     <div id="app">
-      <Header />
-      <Container fluid className="app-container">
-        <Elements stripe={stripePromise}>
-          {prodList.map(() => {
-            return <ProductCard></ProductCard>;
-          })}
-        </Elements>
-      </Container>
+      <Auth0Provider
+        domain="dev-rfxe-cap.us.auth0.com"
+        clientId="Bp15bvDnRF7kmKhFDyi1pz9WofQCl2j1"
+        redirectUri={`${window.location.origin}/dashboard`}
+      >
+        <Header />
+        <Router>
+          <Switch>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/dashboard" exact component={DashboardPage} />
+          </Switch>
+        </Router>
+      </Auth0Provider>
     </div>
   );
 };

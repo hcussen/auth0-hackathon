@@ -27,11 +27,9 @@ const Checkout = ({ productID, children }) => {
   };
 
   return (
-    <form onSubmit={redirect}>
-      <Button variant="primary" disabled={!stripe}>
-        {children}
-      </Button>
-    </form>
+    <Button variant="primary" disabled={!stripe} onClick={redirect}>
+      {children}
+    </Button>
   );
 };
 

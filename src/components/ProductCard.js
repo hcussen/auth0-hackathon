@@ -13,10 +13,10 @@ const ProductCard = ({ productID }) => {
         setCurrentProd(data.prod);
       });
 
-    fetch("/prodprice")
+    fetch(`/prodprice/${productID}`)
       .then((res) => res.json())
       .then((data) => {
-        setCurrentPrice(data.price.data[0].id);
+        setCurrentPrice(data.price.data[0]);
       });
   }, [productID]);
 
@@ -24,8 +24,9 @@ const ProductCard = ({ productID }) => {
     <Card style={{ width: "18rem" }}>
       <Card.Body>
         <Card.Title>{currentProd.name}</Card.Title>
+        <Card.Subtitle>${currentPrice.unit_amount / 100}</Card.Subtitle>
         <Card.Text>{currentProd.description}</Card.Text>
-        <Checkout productID={currentPrice}>Donate </Checkout>
+        <Checkout productID={currentPrice.id}>Donate </Checkout>
       </Card.Body>
     </Card>
   );

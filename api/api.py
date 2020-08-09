@@ -16,14 +16,20 @@ def get_prod(id):
 
 @app.route('/product_list')
 def all_products():
-    print("hello")
     return {'list': stripe.Product.list()}
 
 
-@app.route('/prodprice')
-def get_Price():
-    return {'price': stripe.Price.list(product="prod_Hnc31zqvvzlZbo")}
-    # return {'price': "what's up"}
+@app.route('/progress/<product_name>')
+def progress(product_name):
+    '''
+    the first number is the progress made, second is the goal
+    '''
+    return "20"
+
+
+@app.route('/prodprice/<id>')
+def get_Price(id):
+    return {'price': stripe.Price.list(product=id)}
 
 
 @app.route('/time')
