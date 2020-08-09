@@ -1,10 +1,13 @@
-import time
+# from pymongo import MongoClient
 import stripe
 from flask import Flask
 
 app = Flask(__name__)
 
 stripe.api_key = "sk_test_51HDkRmEZFQAi6Kd7pAkZZtS33tq2Q1NG1dyqfO8gW1haptjw3fbadqTFfHO413T1wLUd7dHsXTw2TXQh7BWjq1EP00IDLvE3uZ"
+
+# client = MongoClient(
+#     "mongodb+srv://ethanmasters:Ranger34@cluster0.v15ar.mongodb.net/Cluster0?retryWrites=true&w=majority")
 
 
 @app.route('/prod/<id>')
@@ -30,8 +33,3 @@ def progress(product_name):
 @app.route('/prodprice/<id>')
 def get_Price(id):
     return {'price': stripe.Price.list(product=id)}
-
-
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}

@@ -31,7 +31,7 @@ const GoalCard = ({ productID }) => {
   }, [productID]);
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "80%" }}>
       <Card.Body>
         <Card.Title>{currentProd.name}</Card.Title>
         <Card.Subtitle>${currentPrice.unit_amount / 100}</Card.Subtitle>

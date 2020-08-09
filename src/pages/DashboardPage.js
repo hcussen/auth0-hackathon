@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from "react";
 
-import { Elements } from "@stripe/react-stripe-js";
-import Container from "react-bootstrap/Container";
-import CardDeck from "react-bootstrap/CardDeck";
-
-import ProductCard from "../components/ProductCard";
-import GoalCard from "../components/GoalCard/GoalCard";
-
-import { loadStripe } from "@stripe/stripe-js";
-const stripePromise = loadStripe(
-  "pk_test_51HDkRmEZFQAi6Kd7g9lQ12DizGNAzTsotDXjuiFobbkEz6IKJvWyVRrUyaLHO1EnBOYrfYRbIYjKb4dhNrSFjToN00CB5cH4la"
-);
+import { Container } from "react-bootstrap";
+import PrivateGoalCard from "../components/GoalCard/PrivateGoalCard";
 
 const DashboardPage = () => {
-  //   const [prodList, setProdList] = useState([]);
-  //   useEffect(() => {}, [setProdList]);
+  const [prodList, setProdList] = useState([]);
+  useEffect(() => {
+    fetch("/product_list")
+      .then((res) => res.json())
+      .then((data) => {
+        setProdList(data.list.data);
+      });
+  }, [setProdList]);
 
-  return <div>DASHBOARD</div>;
+  return (
+    <Container lg>
+      <h1>Your Goals</h1>
+
+      {prodList.map((prod) => {
+        return (
+          <PrivateGoalCard key={prod.id} productID={prod.id}></PrivateGoalCard>
+        );
+      })}
+    </Container>
+  );
 };
 
 export default DashboardPage;
