@@ -15,8 +15,8 @@ const App = () => {
         clientId="Bp15bvDnRF7kmKhFDyi1pz9WofQCl2j1"
         redirectUri={`${window.location.origin}/dashboard`}
       >
-        <Header />
         <Router>
+          <Header />
           <Switch>
             <Route path="/" exact component={HomePage} />
             <PrivateRoute path="/dashboard" exact component={DashboardPage} />

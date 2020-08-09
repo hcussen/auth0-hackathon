@@ -6,7 +6,6 @@ import CardDeck from "react-bootstrap/CardDeck";
 
 import ProductCard from "../components/ProductCard";
 import GoalCard from "../components/GoalCard/GoalCard";
-import LoginButton from "../components/LoginButton";
 
 import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(
@@ -24,7 +23,7 @@ const HomePage = () => {
   }, [setProdList]);
 
   return (
-    <Container fluid className="app-container">
+    <Container lg className="app-container">
       <Elements stripe={stripePromise}>
         <CardDeck>
           {prodList.map((prod) => {
@@ -39,7 +38,6 @@ const HomePage = () => {
           })}
         </CardDeck>
       </Elements>
-      <LoginButton />
     </Container>
   );
 };
