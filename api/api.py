@@ -10,6 +10,11 @@ stripe.api_key = "sk_test_51HDkRmEZFQAi6Kd7pAkZZtS33tq2Q1NG1dyqfO8gW1haptjw3fbad
 #     "mongodb+srv://ethanmasters:Ranger34@cluster0.v15ar.mongodb.net/Cluster0?retryWrites=true&w=majority")
 
 
+@app.route('/')
+def index():
+    return app.send_static_file('../public/index.html')
+
+
 @app.route('/prod/<id>')
 def get_prod(id):
     if id != "undefined":
