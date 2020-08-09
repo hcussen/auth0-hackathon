@@ -12,6 +12,11 @@ def get_prod():
     return {'prod': stripe.Product.retrieve("prod_Hnc31zqvvzlZbo")}
 
 
+@app.route('/product_list')
+def all_products():
+    return {stripe.Product.list()}
+
+
 @app.route('/prodprice')
 def get_Price():
     return {'price': stripe.Price.list(product="prod_Hnc31zqvvzlZbo")}

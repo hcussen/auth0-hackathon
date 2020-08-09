@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-
 import Checkout from "./Checkout";
 
-const MyCard = () => {
+const ProductCard = () => {
   const [currentProd, setCurrentProd] = useState("");
   const [currentPrice, setCurrentPrice] = useState("");
 
@@ -26,13 +25,10 @@ const MyCard = () => {
       <Card.Body>
         <Card.Title>{currentProd.name}</Card.Title>
         <Card.Text>{currentProd.description}</Card.Text>
-        {/* <Button variant="primary" onClick={}>
-          Donate!
-        </Button> */}
         <Checkout productID={currentPrice}>Donate </Checkout>
       </Card.Body>
     </Card>
   );
 };
 
-export default MyCard;
+export default ProductCard;

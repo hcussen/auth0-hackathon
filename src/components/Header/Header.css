@@ -1,0 +1,8 @@
+.my-header {
+  padding: 20px;
+  margin-bottom: 5px;
+  background-color: var(--primary-dark);
+  color: white;
+  text-align: center;
+  font-weight: 800;
+}
