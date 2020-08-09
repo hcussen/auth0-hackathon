@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-import SecretRoute from "./components/SecretRoute";
+import PrivateRoute from "./components/PrivateRoute";
 import "./GlobalStyles.css";
 import Header from "./components/Header/Header";
 import HomePage from "./pages/home";
@@ -19,7 +19,7 @@ const App = () => {
         <Router>
           <Switch>
             <Route path="/" exact component={HomePage} />
-            <Route path="/dashboard" exact component={DashboardPage} />
+            <PrivateRoute path="/dashboard" exact component={DashboardPage} />
           </Switch>
         </Router>
       </Auth0Provider>
