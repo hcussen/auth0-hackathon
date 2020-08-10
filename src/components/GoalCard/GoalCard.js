@@ -23,12 +23,14 @@ const GoalCard = ({ productID }) => {
       });
 
     //fetch the progress amount
-    fetch(`/progress/${productID}`)
+    fetch(`/progress${productID === "prod_Hnyn5deSyBNjBC" ? "cat" : "dog"}`)
       .then((res) => res.json())
       .then((data) => {
         setProgress(data);
       });
   }, [productID]);
+
+  console.log(progress);
 
   return (
     <Card style={{ width: "80%" }}>

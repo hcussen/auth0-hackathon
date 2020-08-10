@@ -18,23 +18,25 @@ const HomePage = () => {
     fetch("/product_list")
       .then((res) => res.json())
       .then((data) => {
+        // console.log(data);
         setProdList(data.list.data);
       });
   }, [setProdList]);
 
   return (
-    <Container lg className="app-container">
+    <Container className="app-container">
       <Elements stripe={stripePromise}>
         <CardDeck>
           {prodList.map((prod) => {
+            if (
+              prod.id === "prod_Hnyn5deSyBNjBC" ||
+              prod.id === "prod_Hnc31zqvvzlZbo"
+            ) {
+              return <GoalCard key={prod.id} productID={prod.id}></GoalCard>;
+            }
             return (
               <ProductCard key={prod.id} productID={prod.id}></ProductCard>
             );
-          })}
-        </CardDeck>
-        <CardDeck>
-          {prodList.map((prod) => {
-            return <GoalCard key={prod.id} productID={prod.id}></GoalCard>;
           })}
         </CardDeck>
       </Elements>

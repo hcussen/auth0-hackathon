@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import ThankButton from "../ThankButton";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const GoalCard = ({ productID }) => {
   const [currentProd, setCurrentProd] = useState("");
@@ -23,7 +24,7 @@ const GoalCard = ({ productID }) => {
       });
 
     //fetch the progress amount
-    fetch(`/progress/${productID}`)
+    fetch(`/progress${productID === "prod_Hnyn5deSyBNjBC" ? "cat" : "dog"}`)
       .then((res) => res.json())
       .then((data) => {
         setProgress(data);
@@ -35,9 +36,6 @@ const GoalCard = ({ productID }) => {
       <Card.Body>
         <Card.Title>{currentProd.name}</Card.Title>
         <ProgressBar now={progress} label={`${progress}%`} />
-        <Card.Text>
-          <h1>$200 / 500 Goal</h1>
-        </Card.Text>
         <ThankButton productName={currentProd.name}>Thank Donors</ThankButton>
       </Card.Body>
     </Card>
