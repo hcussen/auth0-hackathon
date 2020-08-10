@@ -1,5 +1,7 @@
 # About
 
+Hosted on PythonAnywhere [https://ethanmasters.pythonanywhere.com/](here).
+
 <!-- create a loom -->
 
 Due to COVID-19, charities that relied on in-person events and donations are forced to move online, making their benefits less tangible to people who may donate. We want to encourage thinking of donations in the concrete rather than the abstract, so that people are more likely to think about the concrete benefits of their donation.
