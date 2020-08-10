@@ -16,7 +16,7 @@ const DashboardPage = () => {
   }, [setProdList]);
 
   return (
-    <Container lg>
+    <Container>
       <h1>Your Goals</h1>
 
       {prodList.map((prod) => {

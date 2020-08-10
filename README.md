@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# About
 
-## Available Scripts
+<!-- create a loom -->
 
-In the project directory, you can run:
+Due to COVID-19, charities that relied on in-person events and donations are forced to move online, making their benefits less tangible to people who may donate. We want to encourage thinking of donations in the concrete rather than the abstract, so that people are more likely to think about the concrete benefits of their donation.
 
-### `yarn start`
+We created a small store that allows displaying "products" for "purchase", but which are really donation increments. These products can be something small and concrete, for example an an animal shelter might ask for dog food. They might also be donations towards a larger goal, like a building expansion. These larger goals have a progress bar so the potential donator sees what they are working towards, but the checkout is the same so it feels like buying a piece of the goal.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# How It Works
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+We created a React-based frontend for Stripe, the payments processing company, so that a nonprofit can create "products" that they need. When a potential donator visits the site, they see a selection of "products" and can purchase one. These purchase buttons redirect to a Stripe-hosted Checkout page, so that Stripe securely processes all payment.
 
-### `yarn test`
+In order to keep track of these payments, we send information from new payments into MongoDB, which keeps a running total of the amount raised towards a specific goal, as well as the email addresses of those who donate.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The React frontend updates in real time based on information from the database.
 
-### `yarn build`
+We have the donor-facing "store" of our frontend, and we also wanted to add a private dashboard for the nonprofit manager. Using Auth0, we authenticate a user, allowing them into the private section of the app. Within this private segment, the user can see progress towards a goal.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Tech Stack
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+React frontend calls Flask server backend to render info, and makes redirects to Stripe Checkout. Flask server receives webhook notifications from Stripe, and acts on them to update MongoDB database.
+Auth0 used to provide authentification in React app for private routes.
+PythonAnywhere used to host the site at [https://ethanmasters.pythonanywhere.com/](here).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# How to Use it
 
-### `yarn eject`
+## Potential Donor's Perspective
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The potential donor would simply use this like a store.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Organization's Perspective
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To use this, an organization would need to set up a Stripe account and add "products". Then, they would have to connect their stripe account to the frontend by plugging in their stripe and MongoDB API keys. Then, they'd deploy it into Python Anywhere.
+Another thing we like about Stripe is that the actual earmarking of these funds remains up to the nonprofit. For example, if people really like to buy dog food, there's nothing to stop our City Animal Shelter from using that money to buy cat food. The differences in product purchases may give nonprofits an insight into what spurs people to donate and capitalize on that for future campaigns.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Developer's Perspective
 
-## Learn More
+### Developing locally
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In `/api/api.py`, replace `<<REPLACE WITH STRIPE SECRET KEY>>` and `<< REPLACE WITH MONGODB CONNECTION STRING>>` with the appropriate secret keys (lines 5 and 8).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+use `yarn start-api` to start the flask api, and `yarn start` to start the react app
 
-### Code Splitting
+# License
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+MIT License
 
-### Analyzing the Bundle Size
+Copyright (c) <year> <copyright holders>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-### Making a Progressive Web App
+The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

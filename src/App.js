@@ -6,6 +6,7 @@ import "./GlobalStyles.css";
 import Header from "./components/Header/Header";
 import HomePage from "./pages/home";
 import DashboardPage from "./pages/DashboardPage";
+import Page2 from "./pages/Page2";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={HomePage} />
             <PrivateRoute path="/dashboard*" component={DashboardPage} />
+            <Route path="/page-2" exact component={Page2} />
           </Switch>
         </Router>
       </Auth0Provider>
